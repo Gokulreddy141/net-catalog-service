@@ -4,6 +4,7 @@ using CatalogService.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
@@ -15,27 +16,31 @@ namespace CatalogService.Infrastructure.Migrations
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder.HasAnnotation("ProductVersion", "8.0.4");
+            modelBuilder
+                .HasAnnotation("ProductVersion", "8.0.4")
+                .HasAnnotation("Relational:MaxIdentifierLength", 63);
+
+            NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
             modelBuilder.Entity("CatalogService.Core.Entities.Product", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("uuid");
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("text");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("text");
 
                     b.Property<decimal>("Price")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("numeric");
 
                     b.Property<int>("StockQuantity")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -44,7 +49,7 @@ namespace CatalogService.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("34a6cda9-5c13-43a0-8aa8-436e93551825"),
+                            Id = new Guid("02483eea-236b-419f-bc67-497faf7a2a36"),
                             Description = "",
                             Name = "Mechanical Keyboard",
                             Price = 120.50m,
@@ -52,7 +57,7 @@ namespace CatalogService.Infrastructure.Migrations
                         },
                         new
                         {
-                            Id = new Guid("03588ce6-6c5b-47f0-80ec-93a197cfb6f7"),
+                            Id = new Guid("52156b87-c80d-47ef-81a2-32ac93702996"),
                             Description = "",
                             Name = "Wireless Mouse",
                             Price = 45.99m,

@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace CatalogService.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class InitialPostgres : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -17,11 +17,11 @@ namespace CatalogService.Infrastructure.Migrations
                 name: "Products",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "TEXT", nullable: false),
-                    Name = table.Column<string>(type: "TEXT", nullable: false),
-                    Description = table.Column<string>(type: "TEXT", nullable: false),
-                    Price = table.Column<decimal>(type: "TEXT", nullable: false),
-                    StockQuantity = table.Column<int>(type: "INTEGER", nullable: false)
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    Name = table.Column<string>(type: "text", nullable: false),
+                    Description = table.Column<string>(type: "text", nullable: false),
+                    Price = table.Column<decimal>(type: "numeric", nullable: false),
+                    StockQuantity = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -33,8 +33,8 @@ namespace CatalogService.Infrastructure.Migrations
                 columns: new[] { "Id", "Description", "Name", "Price", "StockQuantity" },
                 values: new object[,]
                 {
-                    { new Guid("03588ce6-6c5b-47f0-80ec-93a197cfb6f7"), "", "Wireless Mouse", 45.99m, 30 },
-                    { new Guid("34a6cda9-5c13-43a0-8aa8-436e93551825"), "", "Mechanical Keyboard", 120.50m, 15 }
+                    { new Guid("02483eea-236b-419f-bc67-497faf7a2a36"), "", "Mechanical Keyboard", 120.50m, 15 },
+                    { new Guid("52156b87-c80d-47ef-81a2-32ac93702996"), "", "Wireless Mouse", 45.99m, 30 }
                 });
         }
 
